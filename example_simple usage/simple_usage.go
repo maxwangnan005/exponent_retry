@@ -26,7 +26,7 @@ func Get(url string) error {
 
 func main() {
 	err := exponent_retry.Do(context.Background(), func() error {
-		return Get("https://github.com/maxwangnan005/exponentRetry")
+		return Get("https://github.com/maxwangnan005/exponent_retry")
 	})
 
 	fmt.Println(err)

@@ -3,25 +3,22 @@ package exponent_retry
 import (
 	"context"
 	"io"
-	"math/rand"
 	"time"
 )
 
 func retryBackoff(retry int, minBackoff, maxBackoff time.Duration) time.Duration {
 	if retry < 0 {
-		return 0
+		panic("not reached")
 	}
-
+	// not reached
 	if minBackoff == 0 {
 		return 0
 	}
 
-	d := minBackoff << uint(retry)
+	d := minBackoff << uint(retry-1)
 	if d < minBackoff {
 		return maxBackoff
 	}
-
-	d = minBackoff + time.Duration(rand.Int63n(int64(d)))
 
 	if d > maxBackoff || d < minBackoff {
 		d = maxBackoff

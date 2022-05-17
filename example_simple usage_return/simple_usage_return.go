@@ -10,7 +10,7 @@ import (
 	"github.com/maxwangnan005/exponent_retry"
 )
 
-func Get2() (int64, error) {
+func Get() (int64, error) {
 	rand.Seed(time.Now().UnixNano())
 	number := rand.Int63n(28)
 
@@ -23,7 +23,7 @@ func Get2() (int64, error) {
 
 func main() {
 	body, err := exponent_retry.DoWithReturn(context.TODO(), func() (interface{}, error) {
-		return Get2()
+		return Get()
 	})
 
 	if v, ok := body.(int64); ok {
